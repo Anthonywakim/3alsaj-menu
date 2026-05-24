@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3al Saj | Lebanese Kiosque</title>
+  <meta name="description" content="3al Saj Lebanese Kiosque — Fresh saj, authentic Lebanese flavors. Qlayaat Main Road, facing Centre Mi-Chemin." />
+  <meta property="og:title" content="3al Saj | Lebanese Kiosque" />
+  <meta property="og:description" content="Fresh saj, authentic Lebanese flavors. Qlayaat Main Road." />
+  <meta property="og:type" content="restaurant.restaurant" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:    #fff8ee;
+      --parchment:#f5e6c8;
+      --gold:     #c9a052;
+      --gold-light:#e3c07a;
+      --crimson:  #8b1a1a;
+      --crimson-dark:#5a0f0f;
+      --ink:      #1a0a0a;
+      --muted:    #7a5a3a;
+      --border:   rgba(201,160,82,.35);
+      --border-strong: rgba(201,160,82,.65);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: .55;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px 40px;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,26,26,.55) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 50% 100%, rgba(90,15,15,.4) 0%, transparent 70%),
+        linear-gradient(180deg, #1a0808 0%, #0e0404 100%);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* decorative circles */
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,160,82,.08);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+
+    /* ─── ORNAMENT ─── */
+    .ornament {
+      font-size: 1.4rem;
+      color: var(--gold);
+      letter-spacing: 12px;
+      opacity: .7;
+      margin-bottom: 20px;
+      animation: fadeUp .9s ease both;
+    }
+
+    /* ─── LOGO ─── */
+    .logo-wrap {
+      text-align: center;
+      animation: fadeUp .9s .1s ease both;
+    }
+
+    .logo-ar {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 14vw, 7rem);
+      font-weight: 400;
+      color: var(--gold-light);
+      line-height: 1;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 40px rgba(201,160,82,.25);
+    }
+
+    .logo-en {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 7vw, 3.8rem);
+      font-weight: 600;
+      color: #fff0d8;
+      letter-spacing: 6px;
+      display: block;
+      margin-top: -6px;
+    }
+
+    .subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      letter-spacing: 7px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 22px 0;
+      width: 280px;
+      animation: fadeUp .9s .2s ease both;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .divider-diamond {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ─── INFO ─── */
+    .info {
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #e8d4b0;
+      font-weight: 300;
+      animation: fadeUp .9s .3s ease both;
+    }
+    .info a { color: inherit; text-decoration: none; }
+    .info a:hover { color: var(--gold-light); }
+
+    /* ─── CTA BUTTONS ─── */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+      width: 100%;
+      max-width: 380px;
+      animation: fadeUp .9s .4s ease both;
+    }
+
+    .cta-grid .btn-menu {
+      grid-column: 1 / -1;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      transition: all .22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.06);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .btn:hover::before { opacity: 1; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-menu {
+      background: linear-gradient(135deg, var(--crimson) 0%, #6d1212 100%);
+      color: #fff5e0;
+      border: 1px solid rgba(201,160,82,.4);
+      box-shadow: 0 6px 28px rgba(139,26,26,.4), inset 0 1px 0 rgba(255,255,255,.08);
+      font-size: .78rem;
+      padding: 16px 20px;
+    }
+
+    .btn-secondary {
+      background: rgba(201,160,82,.08);
+      color: var(--gold-light);
+      border: 1px solid var(--border-strong);
+    }
+    .btn-secondary:hover { background: rgba(201,160,82,.15); box-shadow: 0 4px 20px rgba(201,160,82,.12); }
+
+    /* ─── SCROLL HINT ─── */
+    .scroll-hint {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: .5;
+      animation: fadeUp .9s .6s ease both;
+      cursor: pointer;
+    }
+    .scroll-hint span { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: 4px; color: var(--gold); }
+    .scroll-arrow {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+
+    /* ─── SECTION ─── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 60px 20px;
+    }
+
+    .section-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* ─── SECTION HEADER ─── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-tag {
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      letter-spacing: 6px;
+      color: var(--gold);
+      text-transform: uppercase;
+      opacity: .8;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 400;
+      color: #fff0d8;
+      margin: 6px 0 12px;
+      letter-spacing: 3px;
+    }
+
+    /* ─── MENU TABS ─── */
+    .tab-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: rgba(227,192,122,.7);
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: rgba(201,160,82,.12);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* ─── MENU PANEL ─── */
+    .menu-panel { display: none; }
+    .menu-panel.active { display: block; }
+
+    /* ─── MENU ITEM ─── */
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(201,160,82,.12);
+    }
+    .menu-item:last-child { border-bottom: none; }
+
+    .item-left { flex: 1; }
+
+    .item-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: #fff0d8;
+      font-weight: 400;
+    }
+
+    .item-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: 2px;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .item-ar {
+      font-size: .85rem;
+      color: rgba(201,160,82,.6);
+      margin-top: 2px;
+      direction: rtl;
+    }
+
+    .item-price {
+      font-family: 'Cinzel', serif;
+      font-size: .85rem;
+      color: var(--gold);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    /* ─── FOOTER BAND ─── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      background: rgba(0,0,0,.4);
+      border-top: 1px solid var(--border);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .footer p {
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      letter-spacing: 3px;
+      color: rgba(201,160,82,.5);
+      text-transform: uppercase;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: .5; transform: scaleY(1); }
+      50%       { opacity: 1; transform: scaleY(1.15); }
+    }
+
+    /* ─── MENU BG ─── */
+    #menu {
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 0%, rgba(139,26,26,.12), transparent),
+        linear-gradient(180deg, #0e0404 0%, #120606 100%);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 420px) {
+      .cta-grid {
+        grid-template-columns: 1fr;
+      }
+      .cta-grid .btn-menu { grid-column: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <div class="logo-wrap">
+    <div class="logo-ar">عَل صاج</div>
+    <span class="logo-en">3al Saj</span>
+    <p class="subtitle">Lebanese Kiosque</p>
+  </div>
+
+  <div class="divider"><div class="divider-diamond"></div></div>
+
+  <div class="info">
+    <p>📍 Qlayaat Main Road — Facing Centre Mi-Chemin</p>
+    <p>
+      <a href="tel:+96176910929">76 910 929</a>
+      &nbsp;·&nbsp;
+      <a href="tel:+9613347692">03 347 692</a>
+    </p>
+  </div>
+
+  <nav class="cta-grid" aria-label="Quick links">
+    <a class="btn btn-menu" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'});return false;" href="#menu">
+      📖 &nbsp;View Full Menu
+    </a>
+    <a class="btn btn-secondary" href="https://www.google.com/maps/place/3al+Saj/@33.9779401,35.7081471,17z" target="_blank" rel="noopener noreferrer">
+      📍 Location
+    </a>
+    <a class="btn btn-secondary" href="https://www.instagram.com/3al_saj/?hl=en" target="_blank" rel="noopener noreferrer">
+      📸 Instagram
+    </a>
+  </nav>
+
+  <div class="scroll-hint" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+    <span>Menu</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ MENU ══════════════════ -->
+<section id="menu">
+  <div class="section-inner">
+
+    <header class="section-header">
+      <p class="section-tag">Our Offerings</p>
+      <h2 class="section-title">The Menu</h2>
+      <div class="divider" style="margin:0 auto;"><div class="divider-diamond"></div></div>
+    </header>
+
+    <!-- TABS -->
+    <div class="tab-strip" role="tablist">
+      <button class="tab-btn active" role="tab" onclick="showTab('saj',this)">Saj</button>
+      <button class="tab-btn" role="tab" onclick="showTab('saj-extra',this)">Saj Extra</button>
+      <button class="tab-btn" role="tab" onclick="showTab('appetizers',this)">Appetizers</button>
+      <button class="tab-btn" role="tab" onclick="showTab('pizza',this)">Pizza</button>
+      <button class="tab-btn" role="tab" onclick="showTab('bayd',this)">Bayd</button>
+      <button class="tab-btn" role="tab" onclick="showTab('mezza',this)">Mezza</button>
+      <button class="tab-btn" role="tab" onclick="showTab('others',this)">Sides &amp; More</button>
+      <button class="tab-btn" role="tab" onclick="showTab('desserts',this)">Desserts</button>
+      <button class="tab-btn" role="tab" onclick="showTab('drinks',this)">Drinks</button>
+    </div>
+
+    <!-- ── SAJ ── -->
+    <div id="panel-saj" class="menu-panel active">
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Zaatar</div>
+          <div class="item-desc">Our traditional Lebanese thyme man2oushe</div>
+          <div class="item-ar">زعتر</div>
+        </div>
+        <div class="item-price">$2.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Zaatar Special</div>
+          <div class="item-desc">A mix of flavorful thyme, tomatoes and onions</div>
+          <div class="item-ar">زعتر سبيشل</div>
+        </div>
+        <div class="item-price">$3.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Zaatar w Labneh</div>
+          <div class="item-desc">A blend of creamy labneh and traditional zaatar</div>
+          <div class="item-ar">زعتر ولبنة</div>
+        </div>
+        <div class="item-price">$3.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Zaatar w Jebneh</div>
+          <div class="item-desc">A delicious mix of melted cheese and traditional zaatar</div>
+          <div class="item-ar">زعتر وجبنة</div>
+        </div>
+        <div class="item-price">$4.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Jebneh 3ekewe</div>
+          <div class="item-desc">Fresh saj dough topped with rich Akkawi cheese</div>
+          <div class="item-ar">جبنة عكاوي</div>
+        </div>
+        <div class="item-price">$3.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Jebneh Mix</div>
+          <div class="item-desc">Saj dough with Akkawi and Mozzarella cheese</div>
+          <div class="item-ar">جبنة ميكس</div>
+        </div>
+        <div class="item-price">$4.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Jebneh Harra</div>
+          <div class="item-desc">Fresh dough topped with chili paste and mixed cheese</div>
+          <div class="item-ar">جبنة حرة</div>
+        </div>
+        <div class="item-price">$4.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Jebnet Fetta</div>
+          <div class="item-desc">Fresh dough with feta, onions, tomato and olives</div>
+          <div class="item-ar">جبنة فيتا</div>
+        </div>
+        <div class="item-price">$4.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Kechek</div>
+          <div class="item-desc">Traditional kechek spread with a rich, tangy flavor</div>
+          <div class="item-ar">كشك</div>
+        </div>
+        <div class="item-price">$4.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Labneh</div>
+          <div class="item-desc">Fresh creamy labneh spread on saj dough</div>
+          <div class="item-ar">لبنة</div>
+        </div>
+        <div class="item-price">$3.50</div>
+      </div>
+    </div>
+
+    <!-- ── SAJ EXTRA ── -->
+    <div id="panel-saj-extra" class="menu-panel">
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Ham w Jebneh</div>
+          <div class="item-desc">Fresh dough topped with mixed cheese and ham</div>
+          <div class="item-ar">جبنة وجامبون</div>
+        </div>
+        <div class="item-price">$6.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Turkey w Jebneh</div>
+          <div class="item-desc">Fresh dough topped with mixed cheese and turkey</div>
+          <div class="item-ar">جبنة وحبش</div>
+        </div>
+        <div class="item-price">$7.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Pepperoni w Jebneh</div>
+          <div class="item-desc">Fresh dough topped with mixed cheese and pepperoni</div>
+          <div class="item-ar">جبنة وبيبروني</div>
+        </div>
+        <div class="item-price">$7.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Kafta</div>
+          <div class="item-desc">Grilled kafta with tomatoes, pickles, and mayo</div>
+          <div class="item-ar">كفتة</div>
+        </div>
+        <div class="item-price">$6.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Kafta w Jebneh</div>
+          <div class="item-desc">Grilled kafta with melted cheese, tomatoes, pickles, and mayo</div>
+          <div class="item-ar">كفتة وجبنة</div>
+        </div>
+        <div class="item-price">$7.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Kawarma</div>
+          <div class="item-desc">Seasoned kawarma served on fresh saj dough</div>
+          <div class="item-ar">قاورما</div>
+        </div>
+        <div class="item-price">$7.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Kawarma w Labneh</div>
+          <div class="item-desc">A savory mix of kawarma and fresh labneh</div>
+          <div class="item-ar">قاورما ولبنة</div>
+        </div>
+        <div class="item-price">$7.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Kawarma w Jebneh</div>
+          <div class="item-desc">A savory mix of kawarma and melted cheese</div>
+          <div class="item-ar">قاورما وجبنة</div>
+        </div>
+        <div class="item-price">$7.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Soujouk</div>
+          <div class="item-desc">Seasoned soujouk with tomatoes, pickles, and mayo</div>
+          <div class="item-ar">سجق</div>
+        </div>
+        <div class="item-price">$6.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Soujouk w Jebneh</div>
+          <div class="item-desc">Seasoned soujouk with melted cheese, tomatoes, pickles, and mayo</div>
+          <div class="item-ar">سجق وجبنة</div>
+        </div>
+        <div class="item-price">$7.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Djej b Aajin</div>
+          <div class="item-desc">Chicken with cheese, cabbage, pickles, corn, and garlic mayo</div>
+          <div class="item-ar">دجاج بعجين</div>
+        </div>
+        <div class="item-price">$6.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Sub Saj</div>
+          <div class="item-desc">Ham, salami, vegetables, coleslaw, and melted cheese</div>
+          <div class="item-ar">صب صاج</div>
+        </div>
+        <div class="item-price">$7.50</div>
+      </div>
+    </div>
+
+    <!-- ── APPETIZERS ── -->
+    <div id="panel-appetizers" class="menu-panel">
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">French Fries</div>
+          <div class="item-desc">Crispy golden fries</div>
+          <div class="item-ar">بطاطا مقلية</div>
+        </div>
+        <div class="item-price">$6.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Mozzarella Sticks</div>
+          <div class="item-desc">Crispy mozzarella sticks served with cocktail sauce</div>
+          <div class="item-ar">أصابع الموزاريلا</div>
+        </div>
+        <div class="item-price">$7.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Batata Mechwe</div>
+          <div class="item-desc">3 grilled potatoes, served with olive oil or butter</div>
+          <div class="item-ar">بطاطا مشوية</div>
+        </div>
+        <div class="item-price">$8.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Halloumi Mechwe</div>
+          <div class="item-desc">6 pieces of grilled halloumi served with vegetables</div>
+          <div class="item-ar">حلوم مشوي</div>
+        </div>
+        <div class="item-price">$8.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Breaded Halloumi</div>
+          <div class="item-desc">Crunchy halloumi bites served with pesto sauce</div>
+          <div class="item-ar">حلومي مقرمش</div>
+        </div>
+        <div class="item-price">$7.00</div>
+      </div>
+    </div>
+
+    <!-- ── PIZZA ── -->
+    <div id="panel-pizza" class="menu-panel">
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Lebanese</div>
+          <div class="item-desc">Tomato sauce with mushrooms, corn, ham, mozzarella, and olives</div>
+          <div class="item-ar">بيتزا لبنانية</div>
+        </div>
+        <div class="item-price">$10.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Pepperoni</div>
+          <div class="item-desc">Tomato sauce topped with pepperoni and mozzarella cheese</div>
+          <div class="item-ar">بيتزا بيبروني</div>
+        </div>
+        <div class="item-price">$10.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Vegetarian</div>
+          <div class="item-desc">Tomato sauce with tomatoes, mushrooms, corn, sweet peppers, mozzarella, and olives</div>
+          <div class="item-ar">بيتزا نباتية</div>
+        </div>
+        <div class="item-price">$8.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Margherita</div>
+          <div class="item-desc">Classic tomato sauce with fresh mozzarella</div>
+          <div class="item-ar">بيتزا مارغريتا</div>
+        </div>
+        <div class="item-price">$7.00</div>
+      </div>
+    </div>
+
+    <!-- ── BAYD ── -->
+    <div id="panel-bayd" class="menu-panel">
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Bayd</div>
+          <div class="item-desc">Fresh eggs prepared to order</div>
+          <div class="item-ar">بيض</div>
+        </div>
+        <div class="item-price">$4.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Bayd w Kawarma</div>
+          <div class="item-desc">Eggs with flavorful kawarma</div>
+          <div class="item-ar">بيض وقاورما</div>
+        </div>
+        <div class="item-price">$4.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Bayd w Soujouk</div>
+          <div class="item-desc">Eggs with seasoned soujouk</div>
+          <div class="item-ar">بيض وسجق</div>
+        </div>
+        <div class="item-price">$4.00</div>
+      </div>
+    </div>
+
+    <!-- ── MEZZA ── -->
+    <div id="panel-mezza" class="menu-panel">
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Tabouleh</div>
+          <div class="item-desc">Fresh parsley, tomatoes, onions, mint, and bulgur</div>
+          <div class="item-ar">تبولة</div>
+        </div>
+        <div class="item-price">$6.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Labneh Baladieh</div>
+          <div class="item-desc">Traditional homemade labneh</div>
+          <div class="item-ar">لبنة بلدية</div>
+        </div>
+        <div class="item-price">$6.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Labneh b Toum</div>
+          <div class="item-desc">Creamy labneh blended with garlic</div>
+          <div class="item-ar">لبنة بالثوم</div>
+        </div>
+        <div class="item-price">$7.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Hommos</div>
+          <div class="item-desc">Creamy chickpea dip prepared the traditional way</div>
+          <div class="item-ar">حمص</div>
+        </div>
+        <div class="item-price">$6.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Hommos b Kawarma</div>
+          <div class="item-desc">Traditional hommos topped with flavorful kawarma</div>
+          <div class="item-ar">حمص بالقورما</div>
+        </div>
+        <div class="item-price">$8.00</div>
+      </div>
+    </div>
+
+    <!-- ── SIDES & MORE ── -->
+    <div id="panel-others" class="menu-panel">
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Rkakat Jebne</div>
+          <div class="item-desc">Crispy cheese rolls</div>
+          <div class="item-ar">رقاقات جبنة</div>
+        </div>
+        <div class="item-price">$7.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Khodra</div>
+          <div class="item-desc">Fresh tomatoes, cucumbers, mint, and olives</div>
+          <div class="item-ar">خضرة</div>
+        </div>
+        <div class="item-price">$5.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Taook Fekhara</div>
+          <div class="item-desc">Grilled taook served on a tabliye with fries, garlic dip, tomatoes, and pickles</div>
+          <div class="item-ar">طاووق</div>
+        </div>
+        <div class="item-price">$10.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Soujouk Fekhara</div>
+          <div class="item-desc">Seasoned soujouk served on a tabliye with fries, tomatoes, and pickles</div>
+          <div class="item-ar">سجق فخارة</div>
+        </div>
+        <div class="item-price">$11.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Makanek Fekhara</div>
+          <div class="item-desc">Juicy makanek served on a tabliye with fries, tomatoes, and pickles</div>
+          <div class="item-ar">مقانق فخارة</div>
+        </div>
+        <div class="item-price">$12.00</div>
+      </div>
+    </div>
+
+    <!-- ── DESSERTS ── -->
+    <div id="panel-desserts" class="menu-panel">
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Choco</div>
+          <div class="item-desc">Chocolate spread</div>
+          <div class="item-ar">شوكو</div>
+        </div>
+        <div class="item-price">$4.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Choco Banana</div>
+          <div class="item-desc">Chocolate spread with banana</div>
+          <div class="item-ar">شوكو موز</div>
+        </div>
+        <div class="item-price">$5.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Choco Overload</div>
+          <div class="item-desc">Chocolate spread with banana and halawi</div>
+          <div class="item-ar">شوكو أوفرلود</div>
+        </div>
+        <div class="item-price">$6.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Sweety</div>
+          <div class="item-desc">Melted butter topped with sugar</div>
+          <div class="item-ar">سويتي</div>
+        </div>
+        <div class="item-price">$6.00</div>
+      </div>
+    </div>
+
+    <!-- ── DRINKS ── -->
+    <div id="panel-drinks" class="menu-panel">
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Small Water</div></div>
+        <div class="item-price">$1.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Large Water</div></div>
+        <div class="item-price">$2.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Soft Drinks</div></div>
+        <div class="item-price">$2.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Juice</div></div>
+        <div class="item-price">$0.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Sparkling</div></div>
+        <div class="item-price">$2.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Lemonade</div></div>
+        <div class="item-price">$5.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Tea Cup</div></div>
+        <div class="item-price">$2.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Tea Pot</div></div>
+        <div class="item-price">$2.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Nescafe</div></div>
+        <div class="item-price">$2.50</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Raqwet Ahweh</div></div>
+        <div class="item-price">$5.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left"><div class="item-name">Beer</div></div>
+        <div class="item-price">$4.00</div>
+      </div>
+      <div class="menu-item">
+        <div class="item-left">
+          <div class="item-name">Mex Beer</div>
+          <div class="item-desc">Alcoholic beverages on demand</div>
+        </div>
+        <div class="item-price">$6.00</div>
+      </div>
+      <div style="margin-top:28px; border-top:1px solid var(--border); padding-top:20px;">
+        <p style="font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:4px;color:var(--gold);text-align:center;margin-bottom:16px;text-transform:uppercase;">Argileh</p>
+        <div class="menu-item">
+          <div class="item-left"><div class="item-name">Maasal</div></div>
+          <div class="item-price">$7.00</div>
+        </div>
+        <div class="menu-item">
+          <div class="item-left"><div class="item-name">Narbich</div></div>
+          <div class="item-price">$1.00</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /section-inner -->
+</section>
+
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <p>3al Saj · Lebanese Kiosque · Qlayaat, North Lebanon</p>
+</footer>
+
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
