@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>3al Saj | Menu</title>
+  <meta name="description" content="3al Saj Lebanese Kiosque menu - saj, pizza, mezza, appetizers, desserts and drinks. English and Arabic." />
+  <meta name="theme-color" content="#fbf1d6" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@400;700;900&family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream: #fbf1d6;
+      --cream-2: #f5e7c4;
+      --paper: #fffaf0;
+      --sand: #c89a5c;
+      --gold: #b9893f;
+
+      --red: #9a1419;
+      --red-bright: #d71920;
+      --red-dark: #6f0d12;
+
+      --green: #1f6b38;
+      --ink: #2a1206;
+      --ink-soft: #5c3a23;
+
+      --wood-1: #e7c891;
+      --wood-2: #d2a868;
+      --wood-3: #b98a48;
+
+      --line: rgba(154, 20, 25, 0.5);
+      --line-soft: rgba(154, 20, 25, 0.22);
+
+      --hd-en: 'Cinzel', serif;
+      --hd-ar: 'Amiri', 'Cinzel', serif;
+      --bd-en: 'Lato', Arial, sans-serif;
+      --bd-ar: 'Cairo', 'Lato', sans-serif;
+
+      --hd: var(--hd-en);
+      --bd: var(--bd-en);
+    }
+
+    html[lang="ar"] {
+      --hd: var(--hd-ar);
+      --bd: var(--bd-ar);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      min-height: 100svh;
+      font-family: var(--bd);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 22% 8%, rgba(255, 255, 255, 0.7), transparent 40%),
+        radial-gradient(circle at 82% 96%, rgba(201, 154, 92, 0.18), transparent 46%),
+        linear-gradient(180deg, var(--paper), var(--cream) 40%, var(--cream-2));
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.05;
+      background-image:
+        radial-gradient(circle at 30% 30%, rgba(154, 20, 25, 0.6) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 70%, rgba(184, 137, 63, 0.6) 0 2px, transparent 3px);
+      background-size: 120px 120px, 120px 120px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px max(14px, env(safe-area-inset-left)) 11px max(14px, env(safe-area-inset-right));
+      background: linear-gradient(180deg, rgba(33, 14, 6, 0.97), rgba(24, 10, 4, 0.96));
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--cream);
+      text-decoration: none;
+      font-family: var(--hd);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      border: 1px solid rgba(232, 207, 154, 0.4);
+      border-radius: 999px;
+      background: rgba(255, 247, 223, 0.06);
+      transition: background 0.15s ease, border-color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      white-space: nowrap;
+    }
+    .home-link:hover { background: rgba(255, 247, 223, 0.13); border-color: rgba(255, 232, 179, 0.8); }
+
+    .brand {
+      font-family: var(--hd);
+      font-size: 1.02rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      color: var(--cream);
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .brand .cedar { color: var(--green); font-size: 1.05rem; }
+    html[lang="ar"] .brand { letter-spacing: 0; font-size: 1.3rem; }
+
+    .lang {
+      display: inline-flex;
+      border: 1px solid rgba(232, 207, 154, 0.5);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 247, 223, 0.06);
+      flex: none;
+    }
+    .lang button {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      padding: 8px 12px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--cream);
+      background: transparent;
+      transition: background 0.15s ease, color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lang button.ar-label { font-family: 'Cairo', sans-serif; font-size: 0.78rem; }
+    .lang button[aria-pressed="true"] {
+      background: linear-gradient(135deg, var(--red-bright), var(--red-dark));
+      color: #fff;
+    }
+
+    .chips {
+      position: sticky;
+      top: 56px;
+      z-index: 25;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 14px;
+      background: linear-gradient(180deg, rgba(251, 241, 214, 0.97), rgba(251, 241, 214, 0.82));
+      border-bottom: 1px solid var(--line-soft);
+      backdrop-filter: blur(6px);
+      scrollbar-width: none;
+    }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: none;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--red);
+      font-family: var(--hd);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      padding: 7px 13px;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html[lang="ar"] .chip { font-size: 0.78rem; letter-spacing: 0; }
+    .chip:hover { transform: translateY(-1px); }
+    .chip.active { background: linear-gradient(135deg, var(--red-bright), var(--red-dark)); color: #fff; border-color: var(--red-dark); }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 18px max(14px, env(safe-area-inset-left)) 60px max(14px, env(safe-area-inset-right));
+    }
+
+    .hero {
+      text-align: center;
+      padding: 18px 10px 6px;
+    }
+    .hero .logo {
+      display: block;
+      width: min(62%, 230px);
+      height: auto;
+      margin: 0 auto;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.22));
+    }
+    /* graceful fallback shown only if the logo image fails to load */
+    .hero .logo-fallback { display: none; }
+    .hero .logo.is-broken { display: none; }
+    .hero .logo.is-broken + .logo-fallback { display: block; }
+    .hero .logo-fallback .ar-logo {
+      font-family: 'Amiri', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+    }
+    .hero .logo-fallback .en-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+    .hero .tag {
+      margin-top: 10px;
+      font-family: var(--hd);
+      font-size: 0.66rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    html[lang="ar"] .hero .tag { letter-spacing: 1px; }
+
+    section.menu-sec {
+      position: relative;
+      margin-top: 26px;
+      padding: 26px 18px 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 250, 240, 0.7), rgba(255, 250, 240, 0.25));
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 10px 26px rgba(120, 70, 20, 0.1), inset 0 0 0 4px rgba(255, 250, 240, 0.5);
+      scroll-margin-top: 108px;
+    }
+    section.menu-sec::before,
+    section.menu-sec::after {
+      content: '\2756';
+      position: absolute;
+      color: var(--gold);
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+    section.menu-sec::before { top: 8px; left: 12px; }
+    section.menu-sec::after  { top: 8px; right: 12px; }
+
+    .sec-head { text-align: center; margin-bottom: 20px; }
+    .sec-title {
+      font-family: var(--hd);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--ink);
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+    html[lang="ar"] .sec-title { font-size: 2.4rem; letter-spacing: 0; }
+    .sec-sub {
+      margin-top: 4px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+    }
+    .flourish {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 9px auto 0;
+      width: min(80%, 280px);
+      color: var(--gold);
+    }
+    .flourish::before, .flourish::after {
+      content: '';
+      height: 1px; flex: 1;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .grp-label {
+      font-family: var(--hd);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin: 18px 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .grp-label::after { content: ''; height: 1px; flex: 1; background: var(--line-soft); }
+    html[lang="ar"] .grp-label { letter-spacing: 0; font-size: 0.92rem; }
+
+    .item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px 14px;
+      align-items: baseline;
+      padding: 11px 2px;
+      border-bottom: 1px dotted var(--line-soft);
+    }
+    .item:last-child { border-bottom: 0; }
+    .item .name {
+      font-family: var(--hd);
+      font-size: 1.02rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    html[lang="ar"] .item .name { font-size: 1.25rem; letter-spacing: 0; font-weight: 700; }
+    .item .price {
+      font-family: var(--bd-en);
+      font-size: 1.04rem;
+      font-weight: 900;
+      color: var(--red-bright);
+      white-space: nowrap;
+      justify-self: end;
+    }
+    .item .desc {
+      grid-column: 1 / 2;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: var(--ink-soft);
+      font-weight: 400;
+      max-width: 52ch;
+    }
+    html[lang="ar"] .item .desc { font-size: 0.92rem; }
+
+    .photo {
+      position: relative;
+      margin: 16px 0 6px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--wood-2);
+      background:
+        repeating-linear-gradient(92deg, rgba(120, 74, 28, 0.10) 0 1px, transparent 1px 8px),
+        linear-gradient(135deg, var(--wood-1), var(--wood-2) 55%, var(--wood-3));
+      box-shadow: 0 8px 20px rgba(120, 70, 20, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      aspect-ratio: 16 / 9;
+      display: grid;
+      place-items: center;
+    }
+    .photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo .ph {
+      text-align: center;
+      color: rgba(67, 38, 12, 0.7);
+      padding: 12px;
+    }
+    .photo .ph .ic { font-size: 1.7rem; display: block; margin-bottom: 6px; opacity: 0.7; }
+    .photo .ph .lbl {
+      font-family: var(--hd);
+      font-size: 0.66rem;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .photo .ph .file {
+      display: block;
+      margin-top: 5px;
+      font-family: var(--bd-en);
+      font-size: 0.64rem;
+      letter-spacing: 0.3px;
+      color: rgba(67, 38, 12, 0.6);
+    }
+    html[lang="ar"] .photo .ph .lbl { letter-spacing: 0; font-size: 0.82rem; }
+    .photo.filled .ph { display: none; }
+
+    .drinks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 26px;
+    }
+    .drink {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 2px;
+      border-bottom: 1px dotted var(--line-soft);
+    }
+    .drink .dn {
+      font-family: var(--hd);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    html[lang="ar"] .drink .dn { font-size: 1.08rem; letter-spacing: 0; }
+    .drink .dp {
+      font-family: var(--bd-en);
+      font-weight: 900;
+      color: var(--red-bright);
+      white-space: nowrap;
+    }
+    .note {
+      text-align: center;
+      margin: 16px 0 4px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--red);
+    }
+    @media (max-width: 520px) {
+      .drinks-grid { grid-template-columns: 1fr; gap: 0; }
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 34px;
+      color: var(--ink-soft);
+    }
+    .footer .contact {
+      font-family: var(--bd-en);
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--red);
+      letter-spacing: 0.3px;
+    }
+    .footer .contact a { color: var(--red); text-decoration: none; }
+    .footer .contact a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .footer .addr {
+      margin-top: 7px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.02rem;
+      color: var(--ink-soft);
+    }
+    .footer .cr {
+      margin-top: 16px;
+      font-family: var(--hd);
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    @media (max-width: 380px) {
+      .sec-title { font-size: 1.65rem; }
+      html[lang="ar"] .sec-title { font-size: 2rem; }
+      .brand { font-size: 0.9rem; }
+      .home-link span.txt { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+    }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="home-link" href="index.html" id="homeLink">
+      <span aria-hidden="true">&#8592;</span><span class="txt" data-i18n="home">Home</span>
+    </a>
+    <span class="brand"><span class="cedar" aria-hidden="true">&#127794;</span><span id="brandText">3AL SAJ</span></span>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="btnEn" aria-pressed="true" onclick="setLang('en')">EN</button>
+      <button id="btnAr" class="ar-label" aria-pressed="false" onclick="setLang('ar')">عربي</button>
+    </div>
+  </header>
+
+  <nav class="chips" id="chipNav" aria-label="Menu sections"></nav>
+
+  <main class="page">
+    <div class="hero">
+      <img class="logo" src="3al_Saj_Logo.png" alt="3al Saj logo"
+           onerror="this.classList.add('is-broken')" />
+      <div class="logo-fallback" aria-hidden="true">
+        <div class="ar-logo">عَ الصاج</div>
+        <div class="en-logo">3al Saj</div>
+      </div>
+      <div class="tag" data-i18n="tagline">Lebanese Kiosque</div>
+    </div>
+    <div id="menuRoot"></div>
+
+    <div class="footer">
+      <div class="contact">&#9742; <a href="tel:+96176910929">76 910 929</a> &mdash; <a href="tel:+9613347692">03 347 692</a></div>
+      <div class="addr" data-i18n="address">Qlayaat Main Road &middot; Facing Centre Mi-Chemin</div>
+      <div class="cr">3al Saj 2026 &copy;</div>
+    </div>
+  </main>
+
+  <script>
+    const T = {
+      home:    { en: 'Home',            ar: 'الرئيسية' },
+      tagline: { en: 'Lebanese Kiosque', ar: 'كشك لبناني' },
+      address: { en: 'Qlayaat Main Road \u00b7 Facing Centre Mi-Chemin', ar: 'طريق القليعات العام \u00b7 مقابل سنتر مي-شمان' },
+      photo:   { en: 'Photo',           ar: 'صورة' },
+    };
+
+    const MENU = [
+      {
+        id: 'saj', title: { en: 'Saj', ar: 'صاج' },
+        sub: { en: 'Our traditional Lebanese man2oushe', ar: 'منقوشتنا اللبنانية التقليدية' },
+        groups: [
+          { label: { en: 'Zaatar', ar: 'زعتر' }, photo: 'saj-zaatar', items: [
+            { n:{en:'Zaatar',ar:'زعتر'}, p:'2.00$', d:{en:'Our traditional Lebanese thyme man2oushe', ar:'منقوشة الزعتر اللبنانية التقليدية'} },
+            { n:{en:'Zaatar Special',ar:'زعتر سبيشل'}, p:'3.00$', d:{en:'A mix of flavorful thyme, tomatoes and onions', ar:'مزيج شهي من الزعتر مع البندورة والبصل'} },
+            { n:{en:'Zaatar w Labneh',ar:'زعتر ولبنة'}, p:'3.50$', d:{en:'A blend of creamy labneh and traditional zaatar', ar:'مزيج من اللبنة الكريمية والزعتر التقليدي'} },
+            { n:{en:'Zaatar w Jebneh',ar:'زعتر وجبنة'}, p:'4.00$', d:{en:'A delicious mix of melted cheese and traditional zaatar', ar:'مزيج شهي من الجبنة الذائبة والزعتر التقليدي'} },
+          ]},
+          { label: { en: 'Jebneh', ar: 'جبنة' }, photo: 'saj-jebneh', items: [
+            { n:{en:'Jebneh Akkawi',ar:'جبنة عكاوي'}, p:'3.50$', d:{en:'Fresh saj dough topped with rich akkawi cheese', ar:'عجين صاج طازج مغطى بجبنة عكاوي الغنية'} },
+            { n:{en:'Jebneh Mix',ar:'جبنة ميكس'}, p:'4.00$', d:{en:'Saj dough with akkawi and mozzarella cheese', ar:'عجينة صاج طازجة مغطاة بجبنة عكاوي وموزاريلا'} },
+            { n:{en:'Jebneh Harra',ar:'جبنة حرة'}, p:'4.00$', d:{en:'Fresh dough topped with chili paste and mixed cheese', ar:'عجينة صاج طازجة مغطاة بالشطة وخليط الأجبان'} },
+            { n:{en:'Jebnet Feta',ar:'جبنة فيتا'}, p:'4.00$', d:{en:'Fresh dough with feta, onions, tomatoes and olives', ar:'عجينة صاج طازجة مغطاة بجبنة فيتا مع البصل والبندورة والزيتون'} },
+          ]},
+          { label: { en: 'Spreads & Meats', ar: 'مفارش ولحوم' }, photo: 'saj-spreads', items: [
+            { n:{en:'Kechek',ar:'كشك'}, p:'4.00$', d:{en:'Traditional kechek spread with a rich, tangy flavor', ar:'كِشك تقليدي بنكهة غنية ومميزة'} },
+            { n:{en:'Labneh',ar:'لبنة'}, p:'3.50$', d:{en:'Fresh creamy labneh spread on saj dough', ar:'لبنة طازجة وكريمية على عجينة الصاج'} },
+            { n:{en:'Ham w Jebneh',ar:'جبنة وجامبون'}, p:'6.00$', d:{en:'Fresh dough topped with mixed cheese and ham', ar:'عجينة صاج طازجة مغطاة بخليط الأجبان ولحم مدخن'} },
+            { n:{en:'Turkey w Jebneh',ar:'جبنة وحبش'}, p:'7.00$', d:{en:'Fresh dough topped with mixed cheese and turkey', ar:'عجينة صاج طازجة مغطاة بخليط الأجبان والحبش'} },
+          ]},
+          { label: { en: 'Kawarma & Pepperoni', ar: 'قاورما وبيبروني' }, photo: 'saj-kawarma', items: [
+            { n:{en:'Pepperoni w Jebneh',ar:'جبنة وبيبروني'}, p:'7.00$', d:{en:'Fresh dough topped with mixed cheese and pepperoni', ar:'عجينة صاج طازجة مغطاة بخليط الأجبان وبيبروني'} },
+            { n:{en:'Kawarma',ar:'قاورما'}, p:'7.00$', d:{en:'Seasoned kawarma served on fresh saj dough', ar:'قاورما متبّلة على عجينة صاج طازجة'} },
+            { n:{en:'Kawarma w Labneh',ar:'قاورما ولبنة'}, p:'7.00$', d:{en:'A savory mix of kawarma and fresh labneh', ar:'مزيج شهي من القاورما واللبنة الطازجة'} },
+            { n:{en:'Kawarma w Jebneh',ar:'قاورما وجبنة'}, p:'7.50$', d:{en:'A savory mix of kawarma and melted cheese', ar:'مزيج شهي من القاورما والجبنة الذائبة'} },
+          ]},
+        ]
+      },
+
+      {
+        id: 'appetizers', title: { en: 'Appetizers', ar: 'مقبلات' },
+        groups: [
+          { photo: 'appetizers', items: [
+            { n:{en:'French Fries',ar:'بطاطا مقلية'}, p:'6.00$', d:{en:'Crispy golden fries', ar:'بطاطا مقلية ذهبية مقرمشة'} },
+            { n:{en:'Mozzarella Sticks',ar:'أصابع الموزاريلا'}, p:'7.00$', d:{en:'Crispy mozzarella sticks served with cocktail sauce', ar:'أصابع موزاريلا مقرمشة تُقدّم مع صلصة الكوكتيل'} },
+            { n:{en:'Batata Mechwe',ar:'بطاطا مشوية'}, p:'8.00$', d:{en:'3 grilled potatoes, served with olive oil or butter', ar:'حبات بطاطا مشوية، تُقدّم مع زيت الزيتون أو الزبدة'} },
+            { n:{en:'Halloumi Mechwe',ar:'حلوم مشوي'}, p:'8.00$', d:{en:'6 pieces of grilled halloumi served with vegetables', ar:'قطع من الحلومي المشوي تُقدّم مع الخضار'} },
+            { n:{en:'Breaded Halloumi',ar:'حلومي مقرمش'}, p:'7.00$', d:{en:'Crunchy halloumi bites served with pesto sauce', ar:'قطع حلومي مقرمشة تُقدّم مع صلصة البيستو'} },
+          ]},
+        ]
+      },
+
+      {
+        id: 'saj-extra', title: { en: 'Saj Extra', ar: 'صاج إكسترا' },
+        groups: [
+          { photo: 'saj-extra-1', items: [
+            { n:{en:'Kafta',ar:'كفتة'}, p:'6.50$', d:{en:'Grilled kafta with tomatoes, pickles, and mayo', ar:'كفتة مشوية مع البندورة، المخلل والمايونيز'} },
+            { n:{en:'Kafta w Jebneh',ar:'كفتة وجبنة'}, p:'7.50$', d:{en:'Grilled kafta with melted cheese, tomatoes, pickles, and mayo', ar:'كفتة مشوية مع الجبنة الذائبة، البندورة، المخلل وصوص المايونيز'} },
+            { n:{en:'Soujouk',ar:'سجق'}, p:'6.50$', d:{en:'Seasoned soujouk with tomatoes, pickles, and mayo sauce', ar:'سجق متبّل مع البندورة، المخلل وصوص المايونيز'} },
+          ]},
+          { photo: 'saj-extra-2', items: [
+            { n:{en:'Soujouk w Jebneh',ar:'سجق وجبنة'}, p:'7.50$', d:{en:'Seasoned soujouk with melted cheese, tomatoes, pickles, and mayo', ar:'سجق متبّل مع الجبنة الذائبة، البندورة، المخلل وصوص المايونيز'} },
+            { n:{en:'Djej b Aajin',ar:'دجاج بعجين'}, p:'6.50$', d:{en:'Chicken with cheese, cabbage, pickles, corn, and garlic mayo', ar:'صدر دجاج مع الجبنة الذائبة، الملفوف، المخلل، الذرة وصوص الثوم'} },
+            { n:{en:'Sub Saj',ar:'صب صاج'}, p:'7.50$', d:{en:'Ham, salami, vegetables, coleslaw, and melted cheese', ar:'عجينة صاج طازجة محشوة بلحم، سلامي، بندورة، مخلل وكولسلو، ومغطاة بالجبنة الذائبة'} },
+          ]},
+        ]
+      },
+
+      {
+        id: 'pizza', title: { en: 'Pizza', ar: 'بيتزا' },
+        groups: [
+          { photo: 'pizza', items: [
+            { n:{en:'Lebanese',ar:'بيتزا لبنانية'}, p:'10.50$', d:{en:'Tomato sauce topped with mushrooms, corn, ham, mozzarella cheese, and olives', ar:'صلصة بندورة مع الفطر، الذرة، اللحم المدّخن، جبنة الموزاريلا والزيتون'} },
+            { n:{en:'Pepperoni',ar:'بيتزا بيبروني'}, p:'10.00$', d:{en:'Tomato sauce topped with pepperoni and mozzarella cheese', ar:'صلصة بندورة مع البيبروني وجبنة الموزاريلا'} },
+            { n:{en:'Vegetarian',ar:'بيتزا نباتية'}, p:'8.50$', d:{en:'Tomato sauce topped with tomatoes, mushrooms, corn, sweet peppers, mozzarella cheese, and olives', ar:'صلصة بندورة مع البندورة، الفطر، الذرة، الفليفلة الحلوة، جبنة الموزاريلا والزيتون'} },
+            { n:{en:'Margherita',ar:'بيتزا مارغريتا'}, p:'7.00$', d:{en:'Tomato sauce topped with mozzarella cheese and fresh basil', ar:'صلصة بندورة مع جبنة الموزاريلا والريحان الطازج'} },
+          ]},
+        ]
+      },
+
+      {
+        id: 'bayd', title: { en: 'Bayd', ar: 'بيض' },
+        groups: [
+          { photo: 'bayd', items: [
+            { n:{en:'Bayd',ar:'بيض'}, p:'6.00$', d:{en:'Fresh eggs prepared to order', ar:'بيض طازج يُحضّر حسب الطلب'} },
+            { n:{en:'Bayd w Kawarma',ar:'بيض وقاورما'}, p:'8.00$', d:{en:'Eggs with flavorful kawarma', ar:'بيض مع قاورما غنية بالنكهة'} },
+            { n:{en:'Bayd w Soujouk',ar:'بيض وسجق'}, p:'8.00$', d:{en:'Eggs with seasoned soujouk', ar:'بيض مع سجق متبّل'} },
+          ]},
+        ]
+      },
+
+      {
+        id: 'mezza', title: { en: 'Mezza', ar: 'مزة' },
+        groups: [
+          { photo: 'mezza-1', items: [
+            { n:{en:'Tabouleh',ar:'تبولة'}, p:'6.00$', d:{en:'Fresh parsley, tomatoes, onions, mint, and bulgur', ar:'بقدونس، بندورة، بصل، نعناع وبرغل'} },
+            { n:{en:'Labneh Baladieh',ar:'لبنة بلدية'}, p:'6.00$', d:{en:'Traditional homemade labneh', ar:'لبنة بلدية طازجة'} },
+          ]},
+          { photo: 'mezza-2', items: [
+            { n:{en:'Labneh b Toum',ar:'لبنة بالثوم'}, p:'7.00$', d:{en:'Creamy labneh blended with garlic', ar:'لبنة كريمية مع الثوم'} },
+            { n:{en:'Hommos',ar:'حمص'}, p:'6.00$', d:{en:'Creamy chickpea dip prepared the traditional way', ar:'حمص كريمي محضّر على الطريقة التقليدية'} },
+          ]},
+          { photo: 'mezza-3', items: [
+            { n:{en:'Hommos b Kawarma',ar:'حمص بالقاورما'}, p:'8.00$', d:{en:'Traditional hommos topped with flavorful kawarma', ar:'حمص على الطريقة التقليدية مع قاورما'} },
+            { n:{en:'Rkakat Jebne',ar:'رقاقات جبنة'}, p:'7.00$', d:{en:'Crispy cheese rolls', ar:'رقاقات جبنة مقرمشة'} },
+          ]},
+        ]
+      },
+
+      {
+        id: 'fekhara', title: { en: 'Fekhara', ar: 'فخّارة' },
+        sub: { en: 'Served on a tabliye', ar: 'تُقدّم على طبلية' },
+        groups: [
+          { photo: 'fekhara', items: [
+            { n:{en:'Taook Fekhara',ar:'طاووق'}, p:'10.00$', d:{en:'Grilled taook served on a tabliye with fries, garlic dip, tomatoes, and pickles', ar:'طاووق مشوي مع البطاطا المقلية، كريمة الثوم، البندورة والمخلل'} },
+            { n:{en:'Soujouk Fekhara',ar:'سجق'}, p:'11.00$', d:{en:'Seasoned soujouk served on a tabliye with fries, tomatoes, and pickles', ar:'سجق متبّل يُقدّم على طبلية مع البطاطا المقلية، البندورة والمخلل'} },
+            { n:{en:'Makanek Fekhara',ar:'مقانق'}, p:'12.00$', d:{en:'Juicy makanek served on a tabliye with fries, tomatoes, and pickles', ar:'مقانق شهية تُقدّم على طبلية مع البطاطا المقلية، البندورة والمخلل'} },
+            { n:{en:'Khodra',ar:'خضرة'}, p:'5.00$', d:{en:'Fresh tomatoes, cucumbers, mint, and olives', ar:'بندورة، خيار، نعناع وزيتون طازج'} },
+          ]},
+        ]
+      },
+
+      {
+        id: 'desserts', title: { en: 'Desserts', ar: 'حلويات' },
+        groups: [
+          { photo: 'dessert-1', items: [
+            { n:{en:'Choco',ar:'شوكو'}, p:'4.00$', d:{en:'Chocolate spread', ar:'شوكولا قابلة للدهن'} },
+            { n:{en:'Choco Banana',ar:'شوكو موز'}, p:'5.00$', d:{en:'Chocolate spread with banana', ar:'شوكولا قابلة للدهن مع موز'} },
+          ]},
+          { photo: 'dessert-2', items: [
+            { n:{en:'Choco Overload',ar:'شوكو أوفرلود'}, p:'6.00$', d:{en:'Chocolate spread with banana and halawi', ar:'شوكولا قابلة للدهن مع موز وحلاوة'} },
+            { n:{en:'Sweety',ar:'سويتي'}, p:'6.00$', d:{en:'Melted butter topped with sugar', ar:'زبدة مذابة مع السكر'} },
+          ]},
+        ]
+      },
+
+      {
+        id: 'drinks', title: { en: 'Drinks', ar: 'مشروبات' },
+        drinks: [
+          { n:{en:'Small Water',ar:'مياه صغيرة'}, p:'1.00$' },
+          { n:{en:'Soft Drinks',ar:'مشروبات غازية'}, p:'2.00$' },
+          { n:{en:'Large Water',ar:'مياه كبيرة'}, p:'2.00$' },
+          { n:{en:'Juice',ar:'عصير'}, p:'0.50$' },
+          { n:{en:'Tea Cup',ar:'كوب شاي'}, p:'2.00$' },
+          { n:{en:'Sparkling',ar:'مياه غازية'}, p:'2.50$' },
+          { n:{en:'Tea Pot',ar:'إبريق شاي'}, p:'2.00$' },
+          { n:{en:'Lemonade',ar:'ليموناضة'}, p:'5.00$' },
+          { n:{en:'Nescafe',ar:'نسكافيه'}, p:'2.50$' },
+          { n:{en:'Beer',ar:'بيرة'}, p:'4.00$' },
+          { n:{en:'Raqwet Ahweh',ar:'رقوة قهوة'}, p:'5.00$' },
+          { n:{en:'Mex Beer',ar:'بيرة مكسيكية'}, p:'6.00$' },
+        ],
+        note: { en: 'Alcoholic beverages on demand', ar: 'المشروبات الكحولية عند الطلب' }
+      },
+
+      {
+        id: 'argileh', title: { en: 'Argileh', ar: 'أركيلة' },
+        drinks: [
+          { n:{en:'Maasal',ar:'معسل'}, p:'7.00$' },
+          { n:{en:'Narbich',ar:'نربيش'}, p:'1.00$' },
+        ]
+      },
+    ];
+
+    let lang = 'en';
+    const root = document.getElementById('menuRoot');
+    const chipNav = document.getElementById('chipNav');
+
+    function el(tag, cls, html) {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (html != null) n.innerHTML = html;
+      return n;
+    }
+
+    function photoBlock(slot) {
+      const fig = el('figure', 'photo');
+      const img = document.createElement('img');
+      img.alt = '';
+      img.loading = 'lazy';
+      img.src = slot + '.jpg';
+      img.addEventListener('load', () => fig.classList.add('filled'));
+      img.addEventListener('error', () => { img.style.display = 'none'; fig.classList.remove('filled'); });
+      const ph = el('div', 'ph',
+        '<span class="ic" aria-hidden="true">&#128247;</span>' +
+        '<span class="lbl">' + T.photo[lang] + '</span>' +
+        '<span class="file">' + slot + '.jpg</span>');
+      fig.appendChild(img);
+      fig.appendChild(ph);
+      return fig;
+    }
+
+    function render() {
+      root.innerHTML = '';
+      chipNav.innerHTML = '';
+
+      MENU.forEach(sec => {
+        const chip = el('button', 'chip', sec.title[lang]);
+        chip.dataset.target = sec.id;
+        chip.addEventListener('click', () => {
+          document.getElementById(sec.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        chipNav.appendChild(chip);
+
+        const s = el('section', 'menu-sec');
+        s.id = sec.id;
+
+        const head = el('div', 'sec-head');
+        head.appendChild(el('div', 'sec-title', sec.title[lang]));
+        if (sec.sub) head.appendChild(el('div', 'sec-sub', sec.sub[lang]));
+        head.appendChild(el('div', 'flourish', '<span aria-hidden="true">&#10022;</span>'));
+        s.appendChild(head);
+
+        if (sec.drinks) {
+          const grid = el('div', 'drinks-grid');
+          sec.drinks.forEach(d => {
+            const row = el('div', 'drink');
+            row.appendChild(el('span', 'dn', d.n[lang]));
+            row.appendChild(el('span', 'dp', d.p));
+            grid.appendChild(row);
+          });
+          s.appendChild(grid);
+          if (sec.note) s.appendChild(el('div', 'note', '\u2014 ' + sec.note[lang] + ' \u2014'));
+          root.appendChild(s);
+          return;
+        }
+
+        sec.groups.forEach(g => {
+          if (g.label) s.appendChild(el('div', 'grp-label', g.label[lang]));
+          g.items.forEach(it => {
+            const row = el('div', 'item');
+            row.appendChild(el('div', 'name', it.n[lang]));
+            row.appendChild(el('div', 'price', it.p));
+            row.appendChild(el('div', 'desc', it.d[lang]));
+            s.appendChild(row);
+          });
+          if (g.photo) s.appendChild(photoBlock(g.photo));
+        });
+
+        root.appendChild(s);
+      });
+
+      document.querySelectorAll('[data-i18n]').forEach(n => {
+        const k = n.getAttribute('data-i18n');
+        if (T[k]) n.textContent = T[k][lang];
+      });
+
+      setupScrollSpy();
+    }
+
+    function setLang(l) {
+      lang = l;
+      document.documentElement.lang = l;
+      document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+      document.getElementById('btnEn').setAttribute('aria-pressed', l === 'en');
+      document.getElementById('btnAr').setAttribute('aria-pressed', l === 'ar');
+      document.getElementById('brandText').textContent = (l === 'ar') ? 'عَ الصاج' : '3AL SAJ';
+      render();
+    }
+
+    let spyObserver;
+    function setupScrollSpy() {
+      if (typeof IntersectionObserver === 'undefined') return;
+      if (spyObserver) spyObserver.disconnect();
+      const chips = [...chipNav.querySelectorAll('.chip')];
+      spyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const id = e.target.id;
+            chips.forEach(c => c.classList.toggle('active', c.dataset.target === id));
+            const active = chips.find(c => c.dataset.target === id);
+            if (active) active.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+          }
+        });
+      }, { rootMargin: '-120px 0px -65% 0px', threshold: 0 });
+      MENU.forEach(sec => { const n = document.getElementById(sec.id); if (n) spyObserver.observe(n); });
+    }
+
+    (function init() {
+      setLang('en');
+    })();
+  </script>
+</body>
+</html>
